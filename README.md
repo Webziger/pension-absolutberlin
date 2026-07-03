@@ -12,7 +12,7 @@ Demo-Redesign der Startseite von [pension-absolutberlin.de](https://pension-abso
 
 ## Hinweise
 
-- Die Gästestimmen in `src/components/Reviews.astro` sind Platzhalter auf Basis echter Bewertungsthemen. Vor einem Livegang durch echte Zitate ersetzen.
+- Die Gesamtwertung in der Google-Sektion (4,8 von 5, 238 Bewertungen) entspricht den echten Google-Zahlen (Google Hotels, Stand Juli 2026). Die Einzelzitate in `src/components/Reviews.astro` sind Platzhalter auf Basis echter Bewertungsthemen. Vor einem Livegang durch echte Google-Rezensionen ersetzen.
 - Bilder, Logo und Schriften stammen von der bestehenden Website der Pension.
 
 ## Entwicklung
