@@ -27,14 +27,22 @@ const points = [
 <!-- Prominente Marken-Sektion: rotes Band mit asymmetrisch geneigten Kanten -->
 <section
   id="vorteile"
-  class="bg-brand text-white [clip-path:polygon(0_48px,100%_0,100%_100%,0_calc(100%-48px))] md:[clip-path:polygon(0_72px,100%_0,100%_100%,0_calc(100%-72px))]"
+  class="relative bg-brand text-white [clip-path:polygon(0_48px,100%_0,100%_100%,0_calc(100%-48px))] md:[clip-path:polygon(0_72px,100%_0,100%_100%,0_calc(100%-72px))]"
 >
-  <div class="mx-auto grid max-w-site items-center gap-10 px-4 pb-28 pt-28 md:grid-cols-2 md:gap-16 md:px-6 md:pb-40 md:pt-40">
+  <!-- Tiefen-Ebene: weiche Lichtflächen und Kreiskontur im Markenrot -->
+  <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div class="absolute -left-24 top-16 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
+    <div class="absolute -bottom-32 -right-20 h-[420px] w-[420px] rounded-full bg-brand-dark/60 blur-3xl"></div>
+    <div class="absolute -right-24 top-24 h-64 w-64 rounded-full border-[3px] border-white/15"></div>
+    <div class="absolute bottom-24 left-1/3 h-32 w-32 rounded-full border-[3px] border-white/10"></div>
+  </div>
+
+  <div class="relative mx-auto grid max-w-site items-center gap-10 px-4 pb-28 pt-28 md:grid-cols-2 md:gap-16 md:px-6 md:pb-40 md:pt-40">
     <div class="reveal relative order-2 md:order-1">
       <Image
         src={rezeption}
         alt="Rezeption der Pension Absolut Berlin"
-        class="aspect-square w-full rounded-3xl object-cover"
+        class="aspect-square w-full rounded-3xl object-cover shadow-2xl shadow-brand-dark/40"
         widths={[480, 768, 1024]}
         sizes="(min-width: 768px) 40vw, 100vw"
       />
@@ -52,8 +60,8 @@ const points = [
         Warum Gäste bei uns buchen
       </h2>
       <ul class="mt-8 grid gap-6">
-        {points.map((point) => (
-          <li class="reveal flex gap-4">
+        {points.map((point, i) => (
+          <li class="reveal flex gap-4" style={`--reveal-delay: ${i * 0.1}s`}>
             <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20">
               <Icon name="ph:check-bold" class="h-5 w-5 text-white" aria-hidden="true" />
             </span>

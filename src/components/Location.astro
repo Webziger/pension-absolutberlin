@@ -23,7 +23,7 @@ const distances = [
       </p>
     </div>
 
-    <div class="reveal relative mt-10 overflow-hidden rounded-3xl">
+    <div class="reveal relative mt-10 overflow-hidden rounded-3xl shadow-xl shadow-zinc-900/10">
       <a
         href="https://www.google.com/maps/search/?api=1&query=Pension+Absolut+Berlin+Erich-Weinert-Str.+26+10439+Berlin"
         target="_blank"
@@ -47,8 +47,11 @@ const distances = [
     </div>
 
     <div class="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
-      {distances.map((d) => (
-        <div class="reveal rounded-3xl border border-zinc-200 bg-white p-4">
+      {distances.map((d, i) => (
+        <div
+          class="reveal rounded-3xl border border-zinc-200 bg-white p-4 shadow-sm shadow-zinc-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-zinc-900/10"
+          style={`--reveal-delay: ${i * 0.08}s`}
+        >
           <Icon name={d.icon} class="h-6 w-6 text-brand" aria-hidden="true" />
           <p class="mt-2 text-[15px] font-black leading-tight">{d.label}</p>
           <p class="text-[15px] text-zinc-600">{d.value}</p>

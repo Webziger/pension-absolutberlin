@@ -14,9 +14,11 @@ const items = [
   <div
     class="mx-auto grid max-w-site grid-cols-2 gap-x-4 gap-y-5 px-4 py-6 sm:grid-cols-3 md:grid-cols-5 md:px-6 md:py-7"
   >
-    {items.map((item) => (
-      <div class="flex items-center gap-2.5">
-        <Icon name={item.icon} class="h-6 w-6 shrink-0 text-brand" aria-hidden="true" />
+    {items.map((item, i) => (
+      <div class="reveal group flex items-center gap-2.5" style={`--reveal-delay: ${i * 0.08}s`}>
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white shadow-sm shadow-zinc-900/10 transition-transform duration-300 group-hover:scale-110">
+          <Icon name={item.icon} class="h-5 w-5 text-brand" aria-hidden="true" />
+        </span>
         <span class="text-[15px] font-bold leading-tight text-zinc-800">{item.label}</span>
       </div>
     ))}

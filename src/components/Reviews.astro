@@ -1,54 +1,120 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-// Platzhalter-Zitate auf Basis realer Bewertungsthemen der Pension.
-// Vor Livegang durch echte Gästestimmen (z. B. aus Google oder Booking.com) ersetzen.
+// Gesamtwertung: echte Zahlen von Google (Google Hotels, Stand Juli 2026).
+// Die Einzelzitate sind Platzhalter auf Basis realer Bewertungsthemen der Pension.
+// Vor Livegang durch echte Google-Rezensionen ersetzen.
+const GOOGLE_URL =
+  'https://www.google.com/maps/search/?api=1&query=Pension+Absolut+Berlin+Erich-Weinert-Str.+26+10439+Berlin';
+
 const quotes = [
   {
     text: '"Absolut zu empfehlen. Saubere Zimmer, freundlicher Empfang und alles unkompliziert."',
     name: 'Mechthild G.',
-    origin: 'Gast aus Münster',
+    initial: 'M',
+    color: 'bg-petrol',
   },
   {
     text: '"Die Lage ist perfekt: ruhige Straße, und trotzdem ist man schnell überall in Berlin."',
     name: 'Jonas K.',
-    origin: 'Gast aus Leipzig',
+    initial: 'J',
+    color: 'bg-brand',
   },
   {
     text: '"Später Check-in nach Mitternacht war überhaupt kein Problem. Gerne wieder."',
     name: 'Familie Brandt',
-    origin: 'Gäste aus Wien',
+    initial: 'B',
+    color: 'bg-amber-500',
   },
 ];
 ---
 
-<section id="bewertungen" class="mx-auto max-w-site px-4 py-16 md:px-6 md:py-24">
-  <div class="grid gap-8 md:grid-cols-[2fr_3fr] md:gap-14">
-    <div class="reveal">
-      <Icon name="ph:quotes-fill" class="h-12 w-12 text-brand" aria-hidden="true" />
-      <h2 class="mt-4 text-3xl font-black leading-tight md:text-5xl">
-        Das sagen unsere Gäste
-      </h2>
-      <p class="mt-4 text-lg leading-relaxed text-zinc-600">
-        Viele Gäste kommen wieder, weil das Wichtigste stimmt: saubere Zimmer, ehrliche Preise und
-        ein herzliches Willkommen.
-      </p>
-      <div class="mt-6 flex items-center gap-1" aria-label="Bewertung: 5 von 5">
-        {[1, 2, 3, 4, 5].map(() => (
-          <Icon name="ph:star-fill" class="h-6 w-6 text-brand" aria-hidden="true" />
+<section id="bewertungen" class="relative overflow-hidden bg-white">
+  <!-- Dezente Tiefen-Ebene -->
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div class="absolute -right-40 top-10 h-96 w-96 rounded-full bg-brand-50 blur-3xl"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-site px-4 py-16 md:px-6 md:py-24">
+    <div class="grid gap-8 md:grid-cols-[2fr_3fr] md:gap-14">
+      <div class="reveal">
+        <!-- Offizielles Google-"G" als Plattform-Logo -->
+        <svg viewBox="0 0 48 48" class="h-12 w-12" role="img" aria-label="Google">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        <h2 class="mt-4 text-3xl font-black leading-tight md:text-5xl">
+          Von Gästen auf Google empfohlen
+        </h2>
+
+        <div class="mt-6 flex items-center gap-4">
+          <span class="text-5xl font-black leading-none">4,8</span>
+          <div>
+            <div class="relative" aria-label="4,8 von 5 Sternen">
+              <div class="flex gap-0.5 text-zinc-300">
+                {[1, 2, 3, 4, 5].map(() => (
+                  <Icon name="ph:star-fill" class="h-5 w-5" aria-hidden="true" />
+                ))}
+              </div>
+              <div class="absolute inset-0 overflow-hidden" style="width: 96%">
+                <div class="flex gap-0.5 text-amber-400">
+                  {[1, 2, 3, 4, 5].map(() => (
+                    <Icon name="ph:star-fill" class="h-5 w-5 shrink-0" aria-hidden="true" />
+                  ))}
+                </div>
+              </div>
+            </div>
+            <p class="mt-1 text-[15px] text-zinc-600">238 Google-Bewertungen</p>
+          </div>
+        </div>
+
+        <p class="mt-5 max-w-sm text-lg leading-relaxed text-zinc-600">
+          Saubere Zimmer, ehrliche Preise und ein herzliches Willkommen: Das bestätigen unsere Gäste
+          immer wieder.
+        </p>
+
+        <a
+          href={GOOGLE_URL}
+          target="_blank"
+          rel="noopener"
+          class="mt-6 inline-flex items-center gap-2 rounded-full border-2 border-zinc-300 px-6 py-3 text-[15px] font-bold text-ink transition-all hover:-translate-y-0.5 hover:border-brand hover:text-brand"
+        >
+          Alle Google-Bewertungen lesen
+          <Icon name="ph:arrow-square-out-bold" class="h-4 w-4" aria-hidden="true" />
+        </a>
+      </div>
+
+      <div class="grid content-start gap-4">
+        {quotes.map((quote, i) => (
+          <figure
+            class="reveal rounded-3xl border border-zinc-200 bg-white p-5 shadow-lg shadow-zinc-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-zinc-900/10 md:p-6"
+            style={`--reveal-delay: ${i * 0.12}s`}
+          >
+            <figcaption class="flex items-center gap-3">
+              <span class={`flex h-11 w-11 items-center justify-center rounded-full ${quote.color} text-lg font-black text-white`}>
+                {quote.initial}
+              </span>
+              <span>
+                <span class="block text-[15px] font-black text-ink">{quote.name}</span>
+                <span class="mt-0.5 flex gap-0.5 text-amber-400" aria-label="5 von 5 Sternen">
+                  {[1, 2, 3, 4, 5].map(() => (
+                    <Icon name="ph:star-fill" class="h-3.5 w-3.5" aria-hidden="true" />
+                  ))}
+                </span>
+              </span>
+              <svg viewBox="0 0 48 48" class="ml-auto h-6 w-6 opacity-80" role="img" aria-label="Google-Bewertung">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+              </svg>
+            </figcaption>
+            <blockquote class="mt-4 text-lg font-bold leading-snug text-ink">{quote.text}</blockquote>
+          </figure>
         ))}
       </div>
-    </div>
-
-    <div class="grid gap-4">
-      {quotes.map((quote) => (
-        <figure class="reveal rounded-3xl border border-zinc-200 bg-white p-5 md:p-6">
-          <blockquote class="text-lg font-bold leading-snug text-ink">{quote.text}</blockquote>
-          <figcaption class="mt-3 text-[15px] text-zinc-500">
-            <span class="font-bold text-zinc-700">{quote.name}</span>, {quote.origin}
-          </figcaption>
-        </figure>
-      ))}
     </div>
   </div>
 </section>

@@ -50,7 +50,7 @@ const rooms = [
 
   <div class="mt-10 grid gap-5 md:grid-cols-2">
     <!-- Featured: Doppelzimmer gross -->
-    <article class="reveal group relative overflow-hidden rounded-3xl md:row-span-2">
+    <article class="reveal group relative overflow-hidden rounded-3xl shadow-lg shadow-zinc-900/10 md:row-span-2">
       <Image
         src={doppel}
         alt="Doppelzimmer der Pension Absolut Berlin"
@@ -82,8 +82,11 @@ const rooms = [
 
     <!-- Restliche Zimmer als kompakte Karten -->
     <div class="grid gap-5 sm:grid-cols-2 md:row-span-2">
-      {rooms.map((room) => (
-        <article class="reveal group flex flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white">
+      {rooms.map((room, i) => (
+        <article
+          class="reveal group flex flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm shadow-zinc-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-zinc-900/10"
+          style={`--reveal-delay: ${i * 0.1}s`}
+        >
           <div class="overflow-hidden">
             <Image
               src={room.img}

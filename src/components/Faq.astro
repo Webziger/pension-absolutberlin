@@ -50,8 +50,11 @@ const faqSchema = {
     </h2>
 
     <div class="mt-10 grid gap-3">
-      {faqs.map((faq) => (
-        <details class="reveal group rounded-3xl border border-zinc-200 bg-white px-5">
+      {faqs.map((faq, i) => (
+        <details
+          class="reveal group rounded-3xl border border-zinc-200 bg-white px-5 shadow-sm shadow-zinc-900/5 transition-all duration-300 open:border-brand/30 open:shadow-lg open:shadow-brand/5 hover:border-zinc-300"
+          style={`--reveal-delay: ${i * 0.06}s`}
+        >
           <summary class="flex cursor-pointer items-center justify-between gap-4 py-4 text-lg font-bold">
             {faq.q}
             <Icon

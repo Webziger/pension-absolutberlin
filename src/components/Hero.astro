@@ -7,12 +7,19 @@ import fruehstueck from '../assets/img/zimmer-fruehstueck.jpg';
 import galerie1 from '../assets/img/galerie-1.jpg';
 ---
 
-<section id="top" class="bg-white pt-24 md:pt-32">
-  <div class="mx-auto max-w-site px-4 text-center md:px-6">
-    <h1 class="mx-auto max-w-3xl text-4xl font-black leading-[1.05] md:text-6xl">
+<section id="top" class="relative overflow-hidden bg-white pt-24 md:pt-32">
+  <!-- Dezente Tiefen-Ebene hinter dem Hero-Inhalt -->
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div class="absolute -top-32 left-1/2 h-[480px] w-[720px] -translate-x-1/2 rounded-full bg-brand-50 blur-3xl"></div>
+    <div class="absolute -left-40 top-64 h-80 w-80 rounded-full bg-petrol/10 blur-3xl"></div>
+    <div class="absolute -right-32 top-40 h-72 w-72 rounded-full bg-brand-100/60 blur-3xl"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-site px-4 text-center md:px-6">
+    <h1 class="hero-enter mx-auto max-w-3xl text-4xl font-black leading-[1.05] md:text-6xl">
       Übernachten im Prenzlauer Berg. Zentral, fair, familiär.
     </h1>
-    <p class="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-zinc-600 md:text-xl">
+    <p class="hero-enter hero-delay-1 mx-auto mt-4 max-w-xl text-lg leading-relaxed text-zinc-600 md:text-xl">
       Unkompliziert übernachten mit 24-Stunden-Check-in, gratis WLAN und Gemeinschaftsküche, wenige
       Minuten vom Alexanderplatz.
     </p>
@@ -20,7 +27,7 @@ import galerie1 from '../assets/img/galerie-1.jpg';
     <!-- Buchungsleiste im Airbnb-Stil: übergibt Daten an das echte Mews-Buchungssystem -->
     <form
       id="booking-form"
-      class="mx-auto mt-8 flex w-full max-w-3xl flex-col gap-3 rounded-3xl border border-zinc-200 bg-white p-4 text-left shadow-xl shadow-zinc-900/5 md:flex-row md:items-center md:gap-0 md:rounded-full md:p-2 md:pl-8"
+      class="hero-enter hero-delay-2 mx-auto mt-8 flex w-full max-w-3xl flex-col gap-3 rounded-3xl border border-zinc-200 bg-white p-4 text-left shadow-xl shadow-zinc-900/10 transition-shadow duration-300 focus-within:shadow-2xl focus-within:shadow-brand/10 md:flex-row md:items-center md:gap-0 md:rounded-full md:p-2 md:pl-8"
       aria-label="Verfügbarkeit prüfen"
     >
       <div class="flex flex-1 flex-col gap-1 md:pr-6">
@@ -66,13 +73,13 @@ import galerie1 from '../assets/img/galerie-1.jpg';
   </div>
 
   <!-- Asymmetrisch versetzte Bild-Collage am Ende der Hero-Sektion -->
-  <div class="mx-auto max-w-site px-4 pb-16 pt-10 md:px-6 md:pb-20 md:pt-14">
+  <div class="hero-enter hero-delay-3 relative mx-auto max-w-site px-4 pb-16 pt-10 md:px-6 md:pb-20 md:pt-14">
     <div class="grid grid-cols-2 items-start gap-4 md:grid-cols-4 md:gap-5">
       <div class="md:mt-10">
         <Image
           src={fruehstueck}
           alt="Gedeckter Tisch in der Gemeinschaftsküche der Pension Absolut Berlin"
-          class="h-48 w-full rounded-3xl object-cover md:h-64"
+          class="h-48 w-full rounded-3xl object-cover shadow-lg shadow-zinc-900/10 transition-transform duration-300 hover:-translate-y-1.5 md:h-64"
           widths={[480, 768]}
           sizes="(min-width: 768px) 25vw, 50vw"
           loading="eager"
@@ -82,7 +89,7 @@ import galerie1 from '../assets/img/galerie-1.jpg';
         <Image
           src={heroImg}
           alt="Helles Zimmer der Pension Absolut Berlin im Prenzlauer Berg"
-          class="h-48 w-full rounded-3xl object-cover md:h-64"
+          class="h-48 w-full rounded-3xl object-cover shadow-lg shadow-zinc-900/10 transition-transform duration-300 hover:-translate-y-1.5 md:h-64"
           widths={[480, 768, 1024]}
           sizes="(min-width: 768px) 25vw, 50vw"
           loading="eager"
@@ -93,7 +100,7 @@ import galerie1 from '../assets/img/galerie-1.jpg';
         <Image
           src={doppel}
           alt="Doppelzimmer der Pension Absolut Berlin"
-          class="h-48 w-full rounded-3xl object-cover md:h-64"
+          class="h-48 w-full rounded-3xl object-cover shadow-lg shadow-zinc-900/10 transition-transform duration-300 hover:-translate-y-1.5 md:h-64"
           widths={[480, 768]}
           sizes="(min-width: 768px) 25vw, 50vw"
         />
@@ -102,7 +109,7 @@ import galerie1 from '../assets/img/galerie-1.jpg';
         <Image
           src={galerie1}
           alt="Zimmeransicht der Pension Absolut Berlin"
-          class="h-48 w-full rounded-3xl object-cover md:h-64"
+          class="h-48 w-full rounded-3xl object-cover shadow-lg shadow-zinc-900/10 transition-transform duration-300 hover:-translate-y-1.5 md:h-64"
           widths={[480, 768]}
           sizes="(min-width: 768px) 25vw, 50vw"
         />
