@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'TextaNarrow';
+  src: url('/fonts/textanarrowalt-book-webfont.woff2') format('woff2'),
+    url('/fonts/textanarrowalt-book-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TextaNarrow';
+  src: url('/fonts/textanarrowalt-bold-webfont.woff2') format('woff2'),
+    url('/fonts/textanarrowalt-bold-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TextaNarrow';
+  src: url('/fonts/textanarrowalt-black-webfont.woff2') format('woff2'),
+    url('/fonts/textanarrowalt-black-webfont.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+::selection {
+  background-color: #e62148;
+  color: #fff;
+}
+
+/* Scroll-Reveal: Elemente mit .reveal blenden beim Eintritt in den Viewport ein */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* FAQ-Accordion: Chevron dreht sich bei geoeffnetem <details> */
+details[open] .faq-chevron {
+  transform: rotate(180deg);
+}
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}

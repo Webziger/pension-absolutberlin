@@ -1,0 +1,105 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import heroImg from '../assets/img/hero.jpg';
+---
+
+<section id="top" class="relative flex min-h-[100dvh] flex-col justify-end">
+  <div class="absolute inset-0">
+    <Image
+      src={heroImg}
+      alt="Helles Zimmer der Pension Absolut Berlin im Prenzlauer Berg"
+      class="h-full w-full object-cover"
+      widths={[640, 1024, 1600, 1920]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/35 to-ink/20"></div>
+  </div>
+
+  <div class="relative mx-auto w-full max-w-site px-4 pb-8 pt-32 md:px-6 md:pb-14">
+    <h1 class="max-w-3xl text-4xl font-black leading-[1.05] text-white md:text-6xl">
+      Ihre Pension im Prenzlauer Berg. Zentral, fair, familiär.
+    </h1>
+    <p class="mt-4 max-w-xl text-lg leading-relaxed text-white/90 md:text-xl">
+      Unkompliziert übernachten mit 24-Stunden-Check-in, gratis WLAN und Gemeinschaftsküche, wenige
+      Minuten vom Alexanderplatz.
+    </p>
+
+    <!-- Buchungsleiste: übergibt Daten an das echte Mews-Buchungssystem -->
+    <form
+      id="booking-form"
+      class="mt-8 grid grid-cols-2 gap-3 rounded-2xl border border-white/20 bg-white/95 p-4 shadow-xl backdrop-blur md:grid-cols-[1fr_1fr_1fr_auto] md:items-end md:gap-4 md:p-5"
+      aria-label="Verfügbarkeit prüfen"
+    >
+      <div class="flex flex-col gap-2">
+        <label for="arrival" class="text-sm font-bold text-zinc-700">Anreise</label>
+        <input
+          type="date"
+          id="arrival"
+          name="arrival"
+          class="h-11 rounded-lg border border-zinc-300 bg-white px-3 text-[15px] text-ink focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
+        />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="departure" class="text-sm font-bold text-zinc-700">Abreise</label>
+        <input
+          type="date"
+          id="departure"
+          name="departure"
+          class="h-11 rounded-lg border border-zinc-300 bg-white px-3 text-[15px] text-ink focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
+        />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="guests" class="text-sm font-bold text-zinc-700">Gäste</label>
+        <select
+          id="guests"
+          name="guests"
+          class="h-11 rounded-lg border border-zinc-300 bg-white px-3 text-[15px] text-ink focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
+        >
+          <option value="1">1 Gast</option>
+          <option value="2" selected>2 Gäste</option>
+          <option value="3">3 Gäste</option>
+          <option value="4">4 Gäste</option>
+          <option value="5">5 und mehr Gäste</option>
+        </select>
+      </div>
+      <button
+        type="submit"
+        class="col-span-2 flex h-11 items-center justify-center gap-2 rounded-lg bg-brand px-6 text-base font-bold text-white transition-all hover:bg-brand-dark active:scale-[0.98] md:col-span-1"
+      >
+        <Icon name="ph:calendar-check-bold" class="h-5 w-5" aria-hidden="true" />
+        Verfügbarkeit prüfen
+      </button>
+    </form>
+  </div>
+</section>
+
+<script is:inline>
+  // Sinnvolle Vorbelegung: Anreise heute + 7 Tage, Abreise + 9 Tage
+  (function () {
+    function fmt(d) {
+      return d.toISOString().slice(0, 10);
+    }
+    var arrival = document.getElementById('arrival');
+    var departure = document.getElementById('departure');
+    if (!arrival || !departure) return;
+    var a = new Date();
+    a.setDate(a.getDate() + 7);
+    var b = new Date();
+    b.setDate(b.getDate() + 9);
+    arrival.value = fmt(a);
+    departure.value = fmt(b);
+    arrival.min = fmt(new Date());
+    departure.min = fmt(new Date());
+    arrival.addEventListener('change', function () {
+      if (departure.value <= arrival.value) {
+        var next = new Date(arrival.value);
+        next.setDate(next.getDate() + 1);
+        departure.value = fmt(next);
+      }
+      departure.min = arrival.value;
+    });
+  })();
+</script>

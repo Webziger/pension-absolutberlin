@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import map from '../assets/img/map.jpg';
+
+const distances = [
+  { icon: 'ph:tram-bold', label: 'Tram und Ringbahn', value: 'wenige Gehminuten' },
+  { icon: 'ph:buildings-bold', label: 'Alexanderplatz', value: 'ca. 15 Minuten' },
+  { icon: 'ph:tree-bold', label: 'Mauerpark', value: 'in Laufnähe' },
+  { icon: 'ph:car-bold', label: 'Gratis parken', value: 'ab Wisbyer Straße, 6 Min.' },
+];
+---
+
+<section id="lage" class="bg-zinc-50 py-16 md:py-24">
+  <div class="mx-auto max-w-site px-4 md:px-6">
+    <div class="reveal max-w-2xl">
+      <h2 class="text-3xl font-black leading-tight md:text-5xl">
+        Mitten im Prenzlauer Berg, schnell überall
+      </h2>
+      <p class="mt-3 text-lg leading-relaxed text-zinc-600">
+        Die Erich-Weinert-Straße liegt ruhig zwischen Schönhauser Allee und Prenzlauer Allee. Cafés,
+        Restaurants und der Nahverkehr sind direkt um die Ecke.
+      </p>
+    </div>
+
+    <div class="reveal relative mt-10 overflow-hidden rounded-2xl">
+      <a
+        href="https://www.google.com/maps/search/?api=1&query=Pension+Absolut+Berlin+Erich-Weinert-Str.+26+10439+Berlin"
+        target="_blank"
+        rel="noopener"
+        aria-label="Pension Absolut Berlin auf Google Maps öffnen"
+      >
+        <Image
+          src={map}
+          alt="Illustrierte Karte der Umgebung der Pension Absolut Berlin im Prenzlauer Berg"
+          class="h-72 w-full object-cover transition-transform duration-500 hover:scale-[1.02] md:h-[440px]"
+          widths={[640, 1024, 1600]}
+          sizes="(min-width: 768px) 90vw, 100vw"
+        />
+      </a>
+      <div class="pointer-events-none absolute bottom-4 left-4 rounded-xl bg-white/95 px-4 py-3 shadow-md backdrop-blur">
+        <p class="flex items-center gap-2 text-[15px] font-bold text-ink">
+          <Icon name="ph:map-pin-fill" class="h-5 w-5 text-brand" aria-hidden="true" />
+          Erich-Weinert-Str. 26, 10439 Berlin
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
+      {distances.map((d) => (
+        <div class="reveal rounded-2xl border border-zinc-200 bg-white p-4">
+          <Icon name={d.icon} class="h-6 w-6 text-brand" aria-hidden="true" />
+          <p class="mt-2 text-[15px] font-black leading-tight">{d.label}</p>
+          <p class="text-[15px] text-zinc-600">{d.value}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,54 @@
+---
+import { Icon } from 'astro-icon/components';
+
+// Platzhalter-Zitate auf Basis realer Bewertungsthemen der Pension.
+// Vor Livegang durch echte Gästestimmen (z. B. aus Google oder Booking.com) ersetzen.
+const quotes = [
+  {
+    text: '"Absolut zu empfehlen. Saubere Zimmer, freundlicher Empfang und alles unkompliziert."',
+    name: 'Mechthild G.',
+    origin: 'Gast aus Münster',
+  },
+  {
+    text: '"Die Lage ist perfekt: ruhige Straße, und trotzdem ist man schnell überall in Berlin."',
+    name: 'Jonas K.',
+    origin: 'Gast aus Leipzig',
+  },
+  {
+    text: '"Später Check-in nach Mitternacht war überhaupt kein Problem. Gerne wieder."',
+    name: 'Familie Brandt',
+    origin: 'Gäste aus Wien',
+  },
+];
+---
+
+<section id="bewertungen" class="mx-auto max-w-site px-4 py-16 md:px-6 md:py-24">
+  <div class="grid gap-8 md:grid-cols-[2fr_3fr] md:gap-14">
+    <div class="reveal">
+      <Icon name="ph:quotes-fill" class="h-12 w-12 text-brand" aria-hidden="true" />
+      <h2 class="mt-4 text-3xl font-black leading-tight md:text-5xl">
+        Das sagen unsere Gäste
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-zinc-600">
+        Viele Gäste kommen wieder, weil das Wichtigste stimmt: saubere Zimmer, ehrliche Preise und
+        ein herzliches Willkommen.
+      </p>
+      <div class="mt-6 flex items-center gap-1" aria-label="Bewertung: 5 von 5">
+        {[1, 2, 3, 4, 5].map(() => (
+          <Icon name="ph:star-fill" class="h-6 w-6 text-brand" aria-hidden="true" />
+        ))}
+      </div>
+    </div>
+
+    <div class="grid gap-4">
+      {quotes.map((quote) => (
+        <figure class="reveal rounded-2xl border border-zinc-200 bg-white p-5 md:p-6">
+          <blockquote class="text-lg font-bold leading-snug text-ink">{quote.text}</blockquote>
+          <figcaption class="mt-3 text-[15px] text-zinc-500">
+            <span class="font-bold text-zinc-700">{quote.name}</span>, {quote.origin}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

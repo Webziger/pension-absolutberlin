@@ -1,0 +1,43 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-ink py-12 text-zinc-400">
+  <div class="mx-auto grid max-w-site gap-10 px-4 md:grid-cols-3 md:px-6">
+    <div>
+      <img src="/img/logo-weiss.png" alt="Pension Absolut Berlin" width="72" height="72" class="h-14 w-auto" />
+      <p class="mt-4 max-w-xs text-[15px] leading-relaxed">
+        Unkomplizierte Übernachtungen zu fairen Preisen und familiärem Flair, mitten im Prenzlauer
+        Berg.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="text-sm font-black uppercase tracking-wide text-white">Kontakt</h3>
+      <address class="mt-4 grid gap-1.5 text-[15px] not-italic leading-relaxed">
+        <span>Pension Absolut Berlin</span>
+        <span>Erich-Weinert-Str. 26, 10439 Berlin</span>
+        <a href="tel:+493096065020" class="hover:text-white">+49 30 960 650 20</a>
+        <a href="mailto:info@pension-absolutberlin.de" class="hover:text-white">info@pension-absolutberlin.de</a>
+      </address>
+    </div>
+
+    <div>
+      <h3 class="text-sm font-black uppercase tracking-wide text-white">Direkt zu</h3>
+      <nav class="mt-4 grid gap-1.5 text-[15px]" aria-label="Footer-Navigation">
+        <a href="#zimmer" class="hover:text-white">Zimmer</a>
+        <a href="#vorteile" class="hover:text-white">Vorteile</a>
+        <a href="#lage" class="hover:text-white">Lage &amp; Anfahrt</a>
+        <a href="#faq" class="hover:text-white">Häufige Fragen</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="mx-auto mt-10 flex max-w-site flex-col gap-2 border-t border-zinc-800 px-4 pt-6 text-sm md:flex-row md:items-center md:justify-between md:px-6">
+    <p>&copy; {year} Pension Absolut Berlin. Impressum und Datenschutz folgen in der Live-Version.</p>
+    <p>
+      Demo-Redesign von
+      <a href="https://webziger.de" target="_blank" rel="noopener" class="font-bold text-white hover:underline">webziger</a>
+    </p>
+  </div>
+</footer>

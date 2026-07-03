@@ -1,0 +1,144 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const MEWS_ID = 'e7d93a6a-92c6-4444-9b65-b1780078713a';
+
+const lodgingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  name: 'Pension Absolut Berlin',
+  description:
+    'Familiär geführte Pension im Prenzlauer Berg: unkomplizierte Übernachtungen zu fairen Preisen, 24-Stunden-Check-in, gratis WLAN und Gemeinschaftsküchen.',
+  url: 'https://pension-absolutberlin.de/',
+  telephone: '+49 30 960 650 20',
+  email: 'info@pension-absolutberlin.de',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Erich-Weinert-Str. 26',
+    postalCode: '10439',
+    addressLocality: 'Berlin',
+    addressCountry: 'DE',
+  },
+  checkinTime: '15:00',
+  checkoutTime: '10:00',
+  petsAllowed: true,
+  smokingAllowed: false,
+};
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/img/logo-weiss.png" />
+    <link rel="canonical" href={Astro.site} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:image" content={new URL('/img/og.jpg', Astro.site)} />
+    <link
+      rel="preload"
+      href="/fonts/textanarrowalt-black-webfont.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/textanarrowalt-book-webfont.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(lodgingSchema)} />
+  </head>
+  <body class="bg-white font-sans text-ink antialiased">
+    <slot />
+
+    <!-- Mews Distributor: echtes Buchungssystem der Pension.
+         Alle Elemente mit .mews-open öffnen das Overlay; der href dient als Fallback ohne JS. -->
+    <script is:inline define:vars={{ MEWS_ID }}>
+      (function (m, e, w, s) {
+        m.MewsDistributor =
+          m.MewsDistributor ||
+          function () {
+            (m.MewsDistributor.q = m.MewsDistributor.q || []).push(arguments);
+          };
+        var r = e.createElement(w);
+        r.async = 1;
+        r.src = s;
+        var t = e.getElementsByTagName(w)[0];
+        t.parentNode.insertBefore(r, t);
+      })(window, document, 'script', 'https://api.mews.com/distributor/distributor.min.js');
+
+      MewsDistributor(
+        {
+          configurationIds: [MEWS_ID],
+          openElements: '.mews-open',
+        },
+        function (api) {
+          var form = document.getElementById('booking-form');
+          if (!form) return;
+          form.addEventListener('submit', function (ev) {
+            ev.preventDefault();
+            try {
+              var start = form.querySelector('[name="arrival"]').value;
+              var end = form.querySelector('[name="departure"]').value;
+              if (start && typeof api.setStartDate === 'function') {
+                api.setStartDate(new Date(start));
+              }
+              if (end && typeof api.setEndDate === 'function') {
+                api.setEndDate(new Date(end));
+              }
+            } catch (err) {
+              /* Datumsübergabe optional, Overlay öffnet trotzdem */
+            }
+            api.open();
+          });
+        }
+      );
+
+      // Fallback: falls das Mews-Script nicht lädt, öffnet das Formular die Buchungsseite direkt.
+      document.getElementById('booking-form') &&
+        document.getElementById('booking-form').addEventListener('submit', function (ev) {
+          if (window.Mews || (window.MewsDistributor && !window.MewsDistributor.q)) return;
+          ev.preventDefault();
+          window.open('https://app.mews.com/distributor/' + MEWS_ID, '_blank', 'noopener');
+        });
+    </script>
+
+    <!-- Scroll-Reveal via IntersectionObserver (kein Scroll-Listener) -->
+    <script is:inline>
+      if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+        document.querySelectorAll('.reveal').forEach(function (el) {
+          observer.observe(el);
+        });
+      } else {
+        document.querySelectorAll('.reveal').forEach(function (el) {
+          el.classList.add('in-view');
+        });
+      }
+    </script>
+  </body>
+</html>

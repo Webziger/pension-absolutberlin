@@ -1,0 +1,70 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const faqs = [
+  {
+    q: 'Ab wann kann ich einchecken?',
+    a: 'Der reguläre Check-in ist ab 15 Uhr möglich. Ein Early Check-in ab 12 Uhr lässt sich dazubuchen, und dank 24-Stunden-Check-in ist auch eine späte Anreise kein Problem.',
+  },
+  {
+    q: 'Bis wann muss ich auschecken?',
+    a: 'Check-out ist bis spätestens 10 Uhr. Nach Verfügbarkeit können Sie einen Late Check-out dazubuchen. Ihr Gepäck bewahren wir bis 13 Uhr kostenlos an der Rezeption auf.',
+  },
+  {
+    q: 'Gibt es Frühstück?',
+    a: 'Wir bieten kein eigenes Frühstück an, dafür liegen zahlreiche Cafés direkt in der Nachbarschaft. Unsere Gemeinschaftsküchen stehen Ihnen jederzeit zur Verfügung.',
+  },
+  {
+    q: 'Wo kann ich parken?',
+    a: 'Kostenloses Parken ist nördlich der Wisbyer Straße möglich, etwa 6 Gehminuten entfernt. Alternativ gibt es ein überwachtes Parkhaus in der Greifenhagener Straße, rund 200 Meter von uns.',
+  },
+  {
+    q: 'Wie funktioniert das mit den Etagenbädern?',
+    a: 'Einige Zimmer teilen sich gepflegte Badezimmer mit Dusche, Waschbecken und WC auf der Etage. Genau das macht unsere Preise so günstig. Zimmer mit eigenem Bad gibt es ebenfalls.',
+  },
+  {
+    q: 'Sind Hunde erlaubt?',
+    a: 'Wir lieben Vierbeiner. Weil manche Gäste allergisch reagieren, bieten wir sowohl hundefreundliche als auch garantiert hundefreie Zimmer an. Geben Sie Ihren Wunsch einfach bei der Buchung an.',
+  },
+  {
+    q: 'Wie gut ist das WLAN?',
+    a: 'WLAN ist kostenlos. Mehrere Router im Haus sorgen für gute Abdeckung in allen Zimmern und Gemeinschaftsbereichen.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<section id="faq" class="bg-zinc-50 py-16 md:py-24">
+  <div class="mx-auto max-w-3xl px-4 md:px-6">
+    <h2 class="reveal text-center text-3xl font-black leading-tight md:text-5xl">
+      Häufige Fragen
+    </h2>
+
+    <div class="mt-10 grid gap-3">
+      {faqs.map((faq) => (
+        <details class="reveal group rounded-2xl border border-zinc-200 bg-white px-5">
+          <summary class="flex cursor-pointer items-center justify-between gap-4 py-4 text-lg font-bold">
+            {faq.q}
+            <Icon
+              name="ph:caret-down-bold"
+              class="faq-chevron h-5 w-5 shrink-0 text-brand transition-transform duration-300"
+              aria-hidden="true"
+            />
+          </summary>
+          <p class="pb-5 text-[15px] leading-relaxed text-zinc-600">{faq.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

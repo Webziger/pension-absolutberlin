@@ -1,0 +1,113 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import doppel from '../assets/img/zimmer-doppel.jpg';
+import einzel from '../assets/img/zimmer-einzel.jpg';
+import dreibett from '../assets/img/zimmer-dreibett.jpg';
+import mehrbett from '../assets/img/zimmer-mehrbett.jpg';
+import apartment from '../assets/img/zimmer-apartment.jpg';
+
+const MEWS_URL = 'https://app.mews.com/distributor/e7d93a6a-92c6-4444-9b65-b1780078713a';
+
+const rooms = [
+  {
+    img: einzel,
+    name: 'Einzelzimmer',
+    text: 'Kompakt und ruhig, ideal für Städtereisende und Berufspendler.',
+    features: ['1 Person', 'Etagenbad oder eigenes Bad'],
+  },
+  {
+    img: dreibett,
+    name: 'Dreibettzimmer',
+    text: 'Platz für kleine Gruppen oder Familien mit Kind.',
+    features: ['3 Personen', 'Ideal für Familien'],
+  },
+  {
+    img: mehrbett,
+    name: 'Mehrbettzimmer',
+    text: 'Die günstige Wahl für Gruppen und Klassenfahrten.',
+    features: ['4 und mehr Personen', 'Bestpreis pro Bett'],
+  },
+  {
+    img: apartment,
+    name: 'Serviced Apartment',
+    text: 'Wohnen auf Zeit mit eigener Küche, ab zwei Monaten Mietdauer.',
+    features: ['Langzeitaufenthalt', 'Eigene Küche'],
+  },
+];
+---
+
+<section id="zimmer" class="mx-auto max-w-site px-4 py-16 md:px-6 md:py-24">
+  <div class="reveal max-w-2xl">
+    <h2 class="text-3xl font-black leading-tight md:text-5xl">
+      Zimmer für jede Reise
+    </h2>
+    <p class="mt-3 text-lg leading-relaxed text-zinc-600">
+      Vom Einzelzimmer bis zum Apartment: Alle Zimmer sind Nichtraucherzimmer und werden täglich
+      hygienisch gereinigt.
+    </p>
+  </div>
+
+  <div class="mt-10 grid gap-5 md:grid-cols-2">
+    <!-- Featured: Doppelzimmer gross -->
+    <article class="reveal group relative overflow-hidden rounded-2xl md:row-span-2">
+      <Image
+        src={doppel}
+        alt="Doppelzimmer der Pension Absolut Berlin"
+        class="h-72 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03] md:h-full md:min-h-[560px]"
+        widths={[640, 1024, 1600]}
+        sizes="(min-width: 768px) 50vw, 100vw"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent"></div>
+      <div class="absolute inset-x-0 bottom-0 p-6 md:p-8">
+        <h3 class="text-2xl font-black text-white md:text-3xl">Doppelzimmer</h3>
+        <p class="mt-1 max-w-md text-base leading-relaxed text-white/90">
+          Unser beliebtestes Zimmer: hell, ruhig und mit allem, was zwei Gäste brauchen.
+        </p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span class="rounded-full bg-white/15 px-3 py-1 text-sm font-bold text-white backdrop-blur-sm">2 Personen</span>
+          <span class="rounded-full bg-white/15 px-3 py-1 text-sm font-bold text-white backdrop-blur-sm">Gratis WLAN</span>
+        </div>
+        <a
+          href={MEWS_URL}
+          target="_blank"
+          rel="noopener"
+          class="mews-open mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[15px] font-bold text-ink transition-all hover:bg-zinc-100 active:scale-[0.98]"
+        >
+          Jetzt buchen
+          <Icon name="ph:arrow-right-bold" class="h-4 w-4" aria-hidden="true" />
+        </a>
+      </div>
+    </article>
+
+    <!-- Restliche Zimmer als kompakte Karten -->
+    <div class="grid gap-5 sm:grid-cols-2 md:row-span-2">
+      {rooms.map((room) => (
+        <article class="reveal group flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white">
+          <div class="overflow-hidden">
+            <Image
+              src={room.img}
+              alt={`${room.name} der Pension Absolut Berlin`}
+              class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+              widths={[480, 768, 1024]}
+              sizes="(min-width: 768px) 25vw, 100vw"
+            />
+          </div>
+          <div class="flex flex-1 flex-col p-4">
+            <h3 class="text-lg font-black">{room.name}</h3>
+            <p class="mt-1 text-[15px] leading-snug text-zinc-600">{room.text}</p>
+            <a
+              href={MEWS_URL}
+              target="_blank"
+              rel="noopener"
+              class="mews-open mt-auto inline-flex items-center gap-1.5 pt-3 text-[15px] font-bold text-brand transition-colors hover:text-brand-dark"
+            >
+              Jetzt buchen
+              <Icon name="ph:arrow-right-bold" class="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

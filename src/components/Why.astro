@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import rezeption from '../assets/img/rezeption.jpg';
+import gastgeber from '../assets/img/gastgeber.jpg';
+
+const points = [
+  {
+    title: 'Persönlich statt anonym',
+    text: 'Familiär geführt, mit Gastgebern, die Berlin kennen und gern weiterhelfen.',
+  },
+  {
+    title: 'Anreise, wann Sie wollen',
+    text: '24-Stunden-Check-in: auch der späte Flieger ist bei uns kein Problem.',
+  },
+  {
+    title: 'Fair kalkulierte Preise',
+    text: 'Zimmer mit Etagenbad machen die Übernachtung spürbar günstiger.',
+  },
+  {
+    title: 'Küche und Tee inklusive',
+    text: 'Gemeinschaftsküchen zum Selbstkochen und kostenloser Tee für alle Gäste.',
+  },
+];
+---
+
+<section id="vorteile" class="bg-zinc-50 py-16 md:py-24">
+  <div class="mx-auto grid max-w-site items-center gap-10 px-4 md:grid-cols-2 md:gap-16 md:px-6">
+    <div class="reveal relative order-2 md:order-1">
+      <Image
+        src={rezeption}
+        alt="Rezeption der Pension Absolut Berlin"
+        class="aspect-square w-full rounded-2xl object-cover"
+        widths={[480, 768, 1024]}
+        sizes="(min-width: 768px) 40vw, 100vw"
+      />
+      <Image
+        src={gastgeber}
+        alt="Ihr Gastgeber der Pension Absolut Berlin am Telefon"
+        class="absolute -bottom-6 -right-2 hidden w-2/5 rounded-2xl border-4 border-zinc-50 object-cover shadow-lg sm:block md:-right-6"
+        widths={[320, 480]}
+        sizes="20vw"
+      />
+    </div>
+
+    <div class="order-1 md:order-2">
+      <h2 class="reveal text-3xl font-black leading-tight md:text-5xl">
+        Warum Gäste bei uns buchen
+      </h2>
+      <ul class="mt-8 grid gap-6">
+        {points.map((point) => (
+          <li class="reveal flex gap-4">
+            <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-100">
+              <Icon name="ph:check-bold" class="h-5 w-5 text-brand" aria-hidden="true" />
+            </span>
+            <div>
+              <h3 class="text-lg font-black">{point.title}</h3>
+              <p class="mt-0.5 text-[15px] leading-relaxed text-zinc-600">{point.text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
