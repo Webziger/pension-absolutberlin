@@ -1,0 +1,119 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<section id="kontakt" class="mx-auto max-w-site px-4 py-16 md:px-6 md:py-24">
+  <div class="grid gap-10 md:grid-cols-2 md:gap-16">
+    <div class="reveal">
+      <h2 class="text-3xl font-black leading-tight md:text-5xl">
+        Fragen? Schreiben Sie uns.
+      </h2>
+      <p class="mt-4 max-w-md text-lg leading-relaxed text-zinc-600">
+        Ob Gruppenanfrage, Langzeitaufenthalt oder Sonderwunsch: Wir melden uns schnellstmöglich
+        zurück.
+      </p>
+
+      <div class="mt-8 grid gap-4">
+        <a href="tel:+493096065020" class="flex items-center gap-3 font-bold text-ink transition-colors hover:text-brand">
+          <span class="flex h-11 w-11 items-center justify-center rounded-full bg-brand-50">
+            <Icon name="ph:phone-bold" class="h-5 w-5 text-brand" aria-hidden="true" />
+          </span>
+          +49 30 960 650 20
+        </a>
+        <a href="mailto:info@pension-absolutberlin.de" class="flex items-center gap-3 font-bold text-ink transition-colors hover:text-brand">
+          <span class="flex h-11 w-11 items-center justify-center rounded-full bg-brand-50">
+            <Icon name="ph:envelope-simple-bold" class="h-5 w-5 text-brand" aria-hidden="true" />
+          </span>
+          info@pension-absolutberlin.de
+        </a>
+        <p class="flex items-center gap-3 font-bold text-ink">
+          <span class="flex h-11 w-11 items-center justify-center rounded-full bg-brand-50">
+            <Icon name="ph:map-pin-bold" class="h-5 w-5 text-brand" aria-hidden="true" />
+          </span>
+          Erich-Weinert-Str. 26, 10439 Berlin
+        </p>
+      </div>
+
+      <a
+        href="https://app.mews.com/distributor/e7d93a6a-92c6-4444-9b65-b1780078713a"
+        target="_blank"
+        rel="noopener"
+        class="mews-open mt-8 inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-base font-bold text-white transition-all hover:bg-brand-dark active:scale-[0.98]"
+      >
+        <Icon name="ph:calendar-check-bold" class="h-5 w-5" aria-hidden="true" />
+        Jetzt buchen
+      </a>
+    </div>
+
+    <!-- Kontaktformular: öffnet das E-Mail-Programm mit vorbefüllter Nachricht (Demo ohne Backend) -->
+    <form
+      id="contact-form"
+      class="reveal rounded-3xl border border-zinc-200 bg-white p-6 shadow-xl shadow-zinc-900/5 md:p-8"
+      aria-label="Kontaktformular"
+    >
+      <div class="grid gap-5">
+        <div class="flex flex-col gap-2">
+          <label for="contact-name" class="text-sm font-bold text-zinc-700">Name</label>
+          <input
+            type="text"
+            id="contact-name"
+            name="name"
+            required
+            autocomplete="name"
+            class="h-12 rounded-xl border border-zinc-300 bg-white px-4 text-[15px] text-ink focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
+          />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="contact-email" class="text-sm font-bold text-zinc-700">E-Mail</label>
+          <input
+            type="email"
+            id="contact-email"
+            name="email"
+            required
+            autocomplete="email"
+            class="h-12 rounded-xl border border-zinc-300 bg-white px-4 text-[15px] text-ink focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
+          />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="contact-message" class="text-sm font-bold text-zinc-700">Nachricht</label>
+          <textarea
+            id="contact-message"
+            name="message"
+            required
+            rows="5"
+            class="rounded-xl border border-zinc-300 bg-white px-4 py-3 text-[15px] text-ink focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"></textarea>
+        </div>
+        <button
+          type="submit"
+          class="flex h-12 items-center justify-center gap-2 rounded-full bg-brand px-6 text-base font-bold text-white transition-all hover:bg-brand-dark active:scale-[0.98]"
+        >
+          <Icon name="ph:paper-plane-tilt-bold" class="h-5 w-5" aria-hidden="true" />
+          Nachricht senden
+        </button>
+        <p id="contact-success" class="hidden text-[15px] font-bold text-petrol-dark" role="status">
+          Ihr E-Mail-Programm öffnet sich mit der vorbereiteten Nachricht.
+        </p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      if (!form.reportValidity()) return;
+      var name = form.querySelector('[name="name"]').value;
+      var email = form.querySelector('[name="email"]').value;
+      var message = form.querySelector('[name="message"]').value;
+      var subject = encodeURIComponent('Anfrage über die Website von ' + name);
+      var body = encodeURIComponent(message + '\n\nName: ' + name + '\nE-Mail: ' + email);
+      window.location.href =
+        'mailto:info@pension-absolutberlin.de?subject=' + subject + '&body=' + body;
+      var success = document.getElementById('contact-success');
+      if (success) success.classList.remove('hidden');
+    });
+  })();
+</script>
