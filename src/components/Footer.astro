@@ -4,11 +4,11 @@ import { Icon } from 'astro-icon/components';
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-zinc-200 bg-zinc-50">
+<footer class="bg-brand text-white">
   <div class="mx-auto grid max-w-site gap-10 px-4 py-12 md:grid-cols-[2fr_1fr_1fr_1fr] md:gap-8 md:px-6 md:py-16">
     <div>
-      <img src="/img/logo.png" alt="Pension Absolut Berlin" width="130" height="65" class="h-12 w-auto" />
-      <p class="mt-4 max-w-xs text-[15px] leading-relaxed text-zinc-600">
+      <img src="/img/logo-weiss.png" alt="Pension Absolut Berlin" width="72" height="72" class="h-14 w-auto" />
+      <p class="mt-4 max-w-xs text-[15px] leading-relaxed text-white/85">
         Unkomplizierte Übernachtungen zu fairen Preisen und familiärem Flair, mitten im Prenzlauer
         Berg.
       </p>
@@ -16,7 +16,7 @@ const year = new Date().getFullYear();
         href="https://app.mews.com/distributor/e7d93a6a-92c6-4444-9b65-b1780078713a"
         target="_blank"
         rel="noopener"
-        class="mews-open mt-5 inline-flex items-center gap-2 rounded-full border-2 border-brand px-5 py-2 text-[15px] font-bold text-brand transition-colors hover:bg-brand hover:text-white"
+        class="mews-open mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[15px] font-bold text-brand transition-all hover:bg-zinc-100 active:scale-[0.98]"
       >
         Jetzt buchen
         <Icon name="ph:arrow-right-bold" class="h-4 w-4" aria-hidden="true" />
@@ -24,19 +24,19 @@ const year = new Date().getFullYear();
     </div>
 
     <div>
-      <h3 class="text-base font-black text-ink">Entdecken</h3>
-      <nav class="mt-4 grid gap-2 text-[15px] text-zinc-600" aria-label="Footer-Navigation">
-        <a href="#zimmer" class="transition-colors hover:text-brand">Zimmer</a>
-        <a href="#vorteile" class="transition-colors hover:text-brand">Vorteile</a>
-        <a href="#bewertungen" class="transition-colors hover:text-brand">Bewertungen</a>
-        <a href="#lage" class="transition-colors hover:text-brand">Lage &amp; Anfahrt</a>
-        <a href="#faq" class="transition-colors hover:text-brand">Häufige Fragen</a>
+      <h3 class="text-base font-black text-white">Entdecken</h3>
+      <nav class="mt-4 grid gap-2 text-[15px] text-white/85" aria-label="Footer-Navigation">
+        <a href="#zimmer" class="transition-colors hover:text-white hover:underline">Zimmer</a>
+        <a href="#vorteile" class="transition-colors hover:text-white hover:underline">Vorteile</a>
+        <a href="#bewertungen" class="transition-colors hover:text-white hover:underline">Bewertungen</a>
+        <a href="#lage" class="transition-colors hover:text-white hover:underline">Lage &amp; Anfahrt</a>
+        <a href="#faq" class="transition-colors hover:text-white hover:underline">Häufige Fragen</a>
       </nav>
     </div>
 
     <div>
-      <h3 class="text-base font-black text-ink">Gut zu wissen</h3>
-      <ul class="mt-4 grid gap-2 text-[15px] text-zinc-600">
+      <h3 class="text-base font-black text-white">Gut zu wissen</h3>
+      <ul class="mt-4 grid gap-2 text-[15px] text-white/85">
         <li>Check-in ab 15 Uhr</li>
         <li>Check-out bis 10 Uhr</li>
         <li>24-Stunden-Check-in</li>
@@ -46,25 +46,25 @@ const year = new Date().getFullYear();
     </div>
 
     <div>
-      <h3 class="text-base font-black text-ink">Kontakt</h3>
-      <address class="mt-4 grid gap-2 text-[15px] not-italic leading-relaxed text-zinc-600">
+      <h3 class="text-base font-black text-white">Kontakt</h3>
+      <address class="mt-4 grid gap-2 text-[15px] not-italic leading-relaxed text-white/85">
         <span>Erich-Weinert-Str. 26<br />10439 Berlin</span>
-        <a href="tel:+493096065020" class="transition-colors hover:text-brand">+49 30 960 650 20</a>
-        <a href="mailto:info@pension-absolutberlin.de" class="transition-colors hover:text-brand">
+        <a href="tel:+493096065020" class="transition-colors hover:text-white hover:underline">+49 30 960 650 20</a>
+        <a href="mailto:info@pension-absolutberlin.de" class="transition-colors hover:text-white hover:underline">
           info@pension-absolutberlin.de
         </a>
       </address>
     </div>
   </div>
 
-  <div class="border-t border-zinc-200">
-    <div class="mx-auto flex max-w-site flex-col gap-2 px-4 py-5 text-sm text-zinc-500 md:flex-row md:items-center md:justify-between md:px-6">
+  <div class="border-t border-white/20">
+    <div class="mx-auto flex max-w-site flex-col gap-2 px-4 py-5 text-sm text-white/70 md:flex-row md:items-center md:justify-between md:px-6">
       <p>&copy; {year} Pension Absolut Berlin</p>
       <div class="flex flex-wrap items-center gap-x-5 gap-y-1">
         <span>Impressum und Datenschutz folgen in der Live-Version</span>
         <p>
           Demo-Redesign von
-          <a href="https://webziger.de" target="_blank" rel="noopener" class="font-bold text-ink hover:text-brand">webziger</a>
+          <a href="https://webziger.de" target="_blank" rel="noopener" class="font-bold text-white hover:underline">webziger</a>
         </p>
       </div>
     </div>
